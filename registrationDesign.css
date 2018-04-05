@@ -1,0 +1,7 @@
+*{ margin: 0px; padding: 0px; }
+body{
+	border: 3px solid red;
+	width: 1000px;
+	text-align: center;
+	margin: 20px auto;
+}

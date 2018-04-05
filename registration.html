@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>		Registration Here	</title>
+		<!--<link type="text/css" rel="stylesheet" href="registrationDesign.css" /> -->
+		<script>
+			var fullnameValid=false,  emailValid =false, usernameValid = false,	passswordvalid=false;
+			function validSubmit() {
+				fname=document.getElementById('fullnameId').value;
+				email=document.getElementById('emailaddressId').value;
+				uname=document.getElementById('usernameId').value;
+				pass=document.getElementById('passwordId').value;
+				
+				if(fullnameValid == true && emailValid == true && usernameValid == true && passswordvalid == true){
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function() {
+						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							alert(xmlhttp.responseText);
+							fname=document.getElementById('fullnameId').value="";
+				            email=document.getElementById('emailaddressId').value="";
+				            uname=document.getElementById('usernameId').value="";
+				            pass=document.getElementById('passwordId').value="";
+						}
+					};
+					var url="registrationValidation.php?signal=input&FullName="+fname+"&email="+email+"&Username="+uname+"&password="+pass;
+					xmlhttp.open("GET", url, true);
+					xmlhttp.send();
+					
+				}
+			   else{ alert("Please fill up the form"); }
+				//else{  
+				    //<?php if(empty($_GET)=== true){
+					//echo 'Please Fill up the form';
+					//}?>
+				//}
+			}
+			function validName(){
+				var str=document.getElementById('fullnameId').value;
+				var divValue = document.getElementById('divFullName');
+				if(str.length < 3){
+					divValue.innerHTML = "FullName Length must be at least 3";
+					fullnameValid =false;
+				}
+				else if(str.indexOf(".") > 0){
+					divValue.innerHTML = "FullName can't be '.'";
+					fullnameValid =false;
+				}
+				else{
+					divValue.innerHTML = "Valid FullName";	
+					fullnameValid =true;
+				}
+			}
+			function validEmailName(){
+				var email=document.getElementById('emailaddressId').value;
+				var divValue = document.getElementById('divemail');
+                 var atpos = email.indexOf("@");
+                 var dotpos = email.lastIndexOf(".");
+                 if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length) {
+                   return false;
+                  
+				}else {
+					emailValid = true;
+					divValue.innerHTML ="Valid EmailAddress Address ";
+					var xmlhttp = new XMLHttpRequest();
+					
+					xmlhttp.onreadystatechange = function(){
+						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							var resp=JSON.parse(xmlhttp.responseText);
+							for( i=0; i<resp.length; i++){
+								if(resp[i].EmailAddress === email){
+									emailValid = false; 
+									divValue.innerHTML ="Someone used this email address "; 
+								}
+							}
+						}
+					};
+					var url="registrationValidation.php?signal=emailCheck&emailName="+email;
+					xmlhttp.open("GET", url, true);
+					xmlhttp.send();
+				}
+			}
+			function validUserName(){
+				var uname=document.getElementById('usernameId').value;
+				var divValue = document.getElementById('divusername');
+				
+				if(uname.length < 3){
+					divValue.innerHTML = "Username Length must be at least 3";
+					usernameValid = false;
+				}else {		
+					usernameValid = true; 
+					divValue.innerHTML ="Valid Username ";
+					var xmlhttp = new XMLHttpRequest();
+						xmlhttp.onreadystatechange = function(){
+						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						
+							var resp=JSON.parse(xmlhttp.responseText);	
+							for( i=0; i<resp.length; i++){
+								if(resp[i].Username === uname){	
+									usernameValid = false;
+									divValue.innerHTML ="This Username Is Token. Please Choose Another  "; 
+								}
+							}
+						}
+						};
+					var url="registrationValidation.php?signal=usernameCheck&Username="+uname;
+					xmlhttp.open("GET", url, true);
+					xmlhttp.send();
+				}
+			}
+			function validPasswordName(){
+				var email=document.getElementById('passwordId').value;
+				var divValue = document.getElementById('divpassword');
+				if(email.length < 3){
+					divValue.innerHTML = "Password Length must be at least 3";
+					passswordvalid =false;
+				}
+				else{
+					passswordvalid =true;
+					divValue.innerHTML = "Valid Password";	
+				}
+			}
+			
+		</script>
+		
+	<head/>
+	<body> 
+		<h1>Join</h1>
+        <p>Be a part of Our Family.</p>
+		
+		<a> Join Using Facebook <a/>  <br/>  <br/>
+		<form> 
+			Full name  <br/>
+			<input type="text" id="fullnameId" name="FullName" onkeyup="validName()">  <div id="divFullName"> </div> <br/> 
+			Email Address  <br/>
+			<input type="text" id="emailaddressId" name="emailaddress" onkeyup="validEmailName()">   <div id="divemail"> </div> <br/> 
+			Username (only letters, numbers, and underscores)  <br/>
+			<input type="text" id="usernameId" name="username" onkeyup="validUserName()">  <div id="divusername"> </div> <br/> 
+			Password (min. 3 char)  <br/>
+			<input type="text" id="passwordId" name="password" onkeyup="validPasswordName()">  <div id="divpassword"> </div> <br/> 
+			<input type="button" value="join" onclick="validSubmit()"> <br/> <br/><br/> 
+			
+		</form>
+		<a> By joining, you agree to the Terms and Privacy Policy.</a>
+		<h3>Already joined? <a href="login.php">Login</a></h3>
+	<body/>
+</html>

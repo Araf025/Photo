@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		table,td, th{
+		border:1px solid #dddddd;}
+	<h1></h1>
+	</style>
+	<body>
+	<h1><center>Album Page</center></h1> <hr>
+	<table>
+		<tr>
+			<img src="./images/profile.gif" alt="Profile Pciture" width="150" height="150" border="5">
+			<h1>Uploaded Profile Picture</h1> <br/><br/><br/>
+
+
+			<img src="./images/Sent Martin.gif" alt="Sent Martin" width="150" height="150" border="5">
+			<h1>Sent Martin Tour Picture</h1>  <br/><br/><br/>
+
+
+			<img src="./images/Jaflong.gif" alt="Jaflong" width="150" height="150" border="5">
+			<h1>Jaflong Tour Picture</h1>   <br/><br/><br/>
+			
+			<img src="./images/Coxsbazar.gif" alt="Coxs Bazar" width="150" height="150" border="5">
+			<h1>Coxs Bazar Tour Picture</h1>
+
+		</tr>
+	</table>
+	</body>
+</html>

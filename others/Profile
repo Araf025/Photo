@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<img src="./images/profile.gif" alt="profile picture" width="90" height="90" border="5">
+
+	<table>
+
+	<tr>
+	  <th>Edit</th>
+	</tr>
+
+	<tr>
+	  <th>Name</th>
+	</tr>
+	<tr>
+	  <th>Joined Date</th>
+	</tr>
+
+</body>
+</html>

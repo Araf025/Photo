@@ -1,0 +1,29 @@
+ <!DOCTYPE html>
+<html>
+	<style>
+		table,td, th{
+		border:1px solid #dddddd;}
+		<h1></h1>
+	</style>
+	<head>
+		<title>Page Title</title>
+	</head>
+	<body>
+
+		<h1><center>User Login Page</center></h1>
+		<hr>
+
+		<table>
+		<tr>
+		  <th><A HREF="">Home</A></th>
+		  <th><A HREF="">Profile</A></th>
+		  <th><A HREF="">Seeting</A></th>
+		  <th><A HREF="">Logout</A></th>
+		  <th><A HREF="">Album</A></th>
+		  <th>Upload</th>
+		</tr>
+
+		</table> 
+
+	</body>
+</html> 
